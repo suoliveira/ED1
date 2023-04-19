@@ -86,19 +86,19 @@ int RemoverFila(Fila *fila) {
     }
     r->ant->prox = r->prox;
     fila->tail= r->ant;
-    printf("removeu:%d\n", r->info);
+    printf("****Foi removido:%d\n", r->info);
     free(r);
     fila->size--;  
 }
 
 void ImprimeFila(Fila *fila) {
     No *a = fila->head;
-    printf("\nFila: ");
+    printf("\n****Fila: ");
     while (a != NULL) {
         printf("%d ", a->info);
         a = a->prox;
     }
-    printf("\n");
+    printf("****\n");
 }
 
 No *buscarInfo(Fila *fila, int info){
@@ -119,15 +119,15 @@ int main() {
 	fi = criaFila();
 	inserirNaFila(fi, 20);
     inserirNaFila(fi, 13);
- 	inserirNaFila(fi, 4);
-	inserirNaFila(fi, 2);
+ 	//inserirNaFila(fi, 4);
+	//inserirNaFila(fi, 2);
 	inserirNaFila(fi, 18);
 	inserirNaFila(fi, 40);
-	inserirNaFila(fi, 2);
+	//inserirNaFila(fi, 2);
 	inserirNaFila(fi, 19);
-	inserirNaFila(fi, 1);
-    RemoverFila(fi);
-    RemoverFila(fi);
+	//inserirNaFila(fi, 1);
+    //RemoverFila(fi);
+    //RemoverFila(fi);
     RemoverFila(fi);
     ImprimeFila(fi);
 
