@@ -71,13 +71,13 @@ void Desempilhar(Pilha *pilha) {
         free(desempilha);
         pilha->size--;  
     } else {
-        printf("\nA pilha está vazia");
+        printf("\n****A pilha está vazia");
     }
 }
 
 void ImprimePilha(Pilha *pilha) {
     No *a = pilha->head;
-    printf("\nPilha: ");
+    printf("\n****Pilha: ");
     while (a != NULL) {
         printf("%c ", a->caracter);
         a = a->prox;
@@ -112,10 +112,10 @@ int forma(Pilha *pilha, char caracter[]) {
         }
     }
     if (pilha->head == NULL) {
-        printf("\nExpressão válida");
+        printf("\n****Expressão válida****");
         return 1;
     }else {
-        printf("\nExpressão inválida");
+        printf("\n****Expressão inválida****");
         return 0;
     }
 }
@@ -123,14 +123,16 @@ int forma(Pilha *pilha, char caracter[]) {
 int main() {
     Pilha *pilha = criaPilha();
     char exp[50];
-    printf("Digite a expressão: ");
+    printf("****Digite a expressão: ");
     scanf("%[^\n]", exp);
     forma(pilha, exp);
     return 0;
 }
 
-
-
+//(([({[({})}])]))
+//[({[([{}])]})]
+// ([]))
+// (([])
 /* (A + B}) = Inválida
 {[A + B] - [(C - D)] = Inválida
 (A + B)-{C + D}-[F+ G] = Válida
