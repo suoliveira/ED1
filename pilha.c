@@ -98,24 +98,24 @@ int forma(Pilha *pilha, char caracter[]) {
                 Empilhar(pilha, caracter[i]);
             }else if (caracter[i] == ')' || caracter[i] == '}' || caracter[i] == ']') {
                 if (pilha->head == NULL) {
-                    printf("\nExpressão inválida");
+                    printf("\n****Expressão inválida****");
                     return 0;
                 } else{
                     desemp = pilha->head->caracter;
                 if (par(caracter[i], desemp)) {
                     Desempilhar(pilha);
                 } else {
-                    printf("\nExpressão inválida");
+                    printf("\n****Expressão inválida****");
                     return 0;
                 }
             }
         }
     }
     if (pilha->head == NULL) {
-        printf("\n****Expressão válida****");
+        printf("\n****Expressão válida***");
         return 1;
     }else {
-        printf("\n****Expressão inválida****");
+        printf("\n****Expressão inválida***");
         return 0;
     }
 }
@@ -137,5 +137,4 @@ int main() {
 {[A + B] - [(C - D)] = Inválida
 (A + B)-{C + D}-[F+ G] = Válida
 ((H) * {([J + K])}) = Válida
-(((A)))) = Inválida */ 
-
+(((A)))) = Inválida */
