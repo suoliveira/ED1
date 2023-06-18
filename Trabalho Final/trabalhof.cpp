@@ -205,7 +205,7 @@ void removerTabela(Lista t[], char info[]){
 		RemoverDaLista(&t[i],no);
 		printf("Nome removido: %s\n", info);
 	}else{
-		printf("Nome n„o encontrado\n");
+		printf("Nome n√£o encontrado\n");
 	}
 	
 }
@@ -216,13 +216,11 @@ void imprimirIndice (Lista t[], int i){
 		ImprimeLista(&t[i]);
 		printf("\n");
 	}else{
-		printf("N„o foi possivel encontrar esse indice\n");
+		printf("N√£o foi possivel encontrar esse indice\n");
 	}
 }
 
-
-
-       
+    
 int main(){
 
     int opcao;
@@ -230,16 +228,14 @@ int main(){
     char info[20];
     Lista tabela[TAM];
     int i;
-
-
+	
     inicializarTabela(tabela);
     char nome[] = "nomes.txt";
     
-
     do{
         printf("\n\t0 - Sair\n\t1 - Ler\n\t2 - Buscar\n\t3 - Imprimir\n\t4 - Remover\n\t5 - Indice\n");
         scanf("%d", &opcao);
-
+	    
         switch(opcao){
         case 1:
             printf("\tLer arquivo");
