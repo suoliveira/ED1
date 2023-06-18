@@ -124,7 +124,6 @@ No* buscaNo(Lista *lista, char info[]){
   
 void ImprimeLista(Lista *lista) {
     No *a = lista->head;
-    //printf("\n****Lista: ");
     printf("TAM: %d ", lista->size);
     while (a != NULL) {
         printf("%s ", a->info);
@@ -141,7 +140,7 @@ void ler(char f[], Lista *t) {
     if (file) {
         printf("\nTexto lido\n");
         while (fgets(text, 20, file)) {
-            text[strcspn(text, "\n")] = '\0';  // Remove a nova linha (\n)
+            text[strcspn(text, "\n")] = '\0';  
             inserirTabela(t, text);
             printf("%s\n", text);
         }
