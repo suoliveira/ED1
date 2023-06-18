@@ -23,7 +23,14 @@ void inserirNaLista (Lista *lista, char info[]);
 int RemoverDaLista(Lista *lista, No* no);
 void ImprimeLista(Lista *lista);
 No* buscaNo(Lista *lista , char info[]);
-void inserirTabela(Lista[], char[]);
+void ler(char f[], Lista *t);
+void inicializarTabela(Lista t[]);
+int funcaoHash(char info[]);
+void inserirTabela(Lista t[], char info[]);
+No *buscaTabela(Lista t[], char info[]);
+void imprimirTabela(Lista t[]);
+void removerTabela(Lista t[], char info[]);
+void imprimirIndice (Lista t[], int i);
 
 
 No *alocaMemoriaNo() {
@@ -129,7 +136,7 @@ void ImprimeLista(Lista *lista) {
         printf("%s ", a->info);
         a = a->prox;
     }
-  	 printf("****\n");
+  	 printf("\n\t-----------------------------------------------------------------------------------------------------\t\n");
 }
 
 //Ler 
@@ -177,19 +184,41 @@ void inserirTabela(Lista t[], char info[]){
 
 No *buscaTabela(Lista t[], char info[]){
     int i = funcaoHash(info);
-    printf("\nIndice gerada: %d\n", i);
+    printf("\nIndice: %d\n", i);
     return buscaNo(&t[i], info);
 }
 
 void imprimirTabela(Lista t[]){
     int i;
     for(i = 0; i < TAM; i++){
-        printf("\tChave %d: ", i);
+        printf("\tIndice %d: ", i);
         ImprimeLista(&t[i]);
         printf("\n");
     }
 }
 
+void removerTabela(Lista t[], char info[]){
+	No *no = buscaTabela(t, info);
+	
+	if (no != NULL){
+		int i = funcaoHash(info);
+		RemoverDaLista(&t[i],no);
+		printf("Nome removido: %s\n", info);
+	}else{
+		printf("Nome não encontrado\n");
+	}
+	
+}
+
+void imprimirIndice (Lista t[], int i){
+	if(i>=0 && i<TAM){
+		printf("\tIndice %d: ", i);
+		ImprimeLista(&t[i]);
+		printf("\n");
+	}else{
+		printf("Não foi possivel encontrar esse indice\n");
+	}
+}
 
 
 
@@ -200,13 +229,15 @@ int main(){
     No *retorno;
     char info[20];
     Lista tabela[TAM];
+    int i;
+
 
     inicializarTabela(tabela);
     char nome[] = "nomes.txt";
     
 
     do{
-        printf("\n\t0 - Sair\n\t1 - Ler\n\t2 - Buscar\n\t3 -Imprimir\n");
+        printf("\n\t0 - Sair\n\t1 - Ler\n\t2 - Buscar\n\t3 - Imprimir\n\t4 - Remover\n\t5 - Indice\n");
         scanf("%d", &opcao);
 
         switch(opcao){
@@ -226,6 +257,16 @@ int main(){
         case 3:
             imprimirTabela(tabela);
             break;
+        case 4:
+    		printf("Qual nome deseja remover? ");
+   	 		scanf("%s", info);
+    		removerTabela(tabela, info);
+    		break;
+    	case 5:
+    		printf("Qual indice deseja visualizar? ");
+    		scanf("%d", &i);
+    		imprimirIndice(tabela, i);
+    		break;
         default:
             printf("Opcao invalida!\n");
         }
@@ -233,8 +274,6 @@ int main(){
 
     return 0;
 }
-
-
 
 
 
