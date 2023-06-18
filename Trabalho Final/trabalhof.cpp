@@ -38,13 +38,13 @@ No *criaNo(char info[]) {
     No *no = alocaMemoriaNo();
 
     if (no != NULL) {
-        no->info = (char*) malloc((strlen(info) + 1) * sizeof(char));  // Aloca memória para o conteúdo
+        no->info = (char*) malloc((strlen(info) + 1) * sizeof(char));  
         if (no->info != NULL) {
-            strcpy(no->info, info);  // Copia o conteúdo para a memória alocada
+            strcpy(no->info, info);  
             no->prox = NULL;
             no->ant = NULL;
         } else {
-            free(no);  // Libera o nó se a alocação falhar
+            free(no);  
             return NULL;
         }
     }
