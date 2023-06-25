@@ -349,7 +349,7 @@ int main(){
     	case 5:
     		printf("Qual chave deseja ordenar?");
     		scanf("%d", &i);
-    		imprimirIndice(tabela, i);
+    		imprimirEOrdenarIndice(tabela, i);
     		break;
         default:
             printf("Opcao invalida!\n");
