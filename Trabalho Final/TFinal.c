@@ -19,18 +19,24 @@ No *alocaMemoriaNo();
 Lista *alocaMemoriaLista();
 No *criaNo(char info[]);
 Lista *criaLista();
-void inserirNaLista (Lista *lista, char info[]);
-int RemoverDaLista(Lista *lista, No* no);
+void inserirNaLista(Lista *lista, char info[]);
+int RemoverDaLista(Lista *lista, No *no);
 void ImprimeLista(Lista *lista);
 No* buscaNo(Lista *lista , char info[]);
 void ler(char f[], Lista *t);
+int Igual(No *i,No *f);
+int Menor(No *i,No *f);
+No* Meio(Lista *lista, No *inicio, No *fim);
+void Trocar(No *i, No *f);
+void Quicksort(Lista *lista, No *inicio, No *fim);
 void inicializarTabela(Lista t[]);
 int funcaoHash(char info[]);
 void inserirTabela(Lista t[], char info[]);
 No *buscaTabela(Lista t[], char info[]);
 void imprimirTabela(Lista t[]);
 void removerTabela(Lista t[], char info[]);
-void imprimirIndice (Lista t[], int i);
+void imprimirEOrdenarIndice(Lista t[], int i);
+
 
 
 No *alocaMemoriaNo() {
@@ -102,7 +108,7 @@ int RemoverDaLista(Lista *lista, No *no){
 		  }else{
 			  no->prox->ant = NULL;
               }
-	  }else{
+	    }else{
 		  no->ant->prox = no ->prox;
 		  if(no->prox == NULL){
 			  lista->tail = no->ant;
@@ -119,11 +125,11 @@ int RemoverDaLista(Lista *lista, No *no){
 No* buscaNo(Lista *lista, char info[]){
   
   No *busca = lista->head;
-  while(busca!=NULL){
+  while(busca != NULL){
     if(strcmp(busca->info, info)==0){
       return busca;
     }
-    busca=busca->prox;  
+    busca = busca->prox;  
   }
   return NULL;
 }
@@ -159,7 +165,7 @@ void ler(char f[], Lista *t) {
 
 //Quicksort
 
-int Igual(No *i,No* f){
+int Igual(No *i,No *f){
     No *busca = i;
     while (busca != NULL){
         if(busca == f){
@@ -171,7 +177,7 @@ int Igual(No *i,No* f){
     return 0; 
 }
 
-int Menor(No *i,No* f){
+int Menor(No *i,No *f){
     No *busca = i;
     while (busca != NULL){
         if(busca == f->ant){
@@ -253,7 +259,7 @@ int funcaoHash(char info[]){
     int hash = 0;
 
     for ( i = 0; i < tam; i++){
-        hash += info[i] *  (i + 1);
+        hash += info[i] * (i + 1);
     }
      return hash % TAM;
 }
@@ -283,22 +289,22 @@ void removerTabela(Lista t[], char info[]){
 	
 	if (no != NULL){
 		int i = funcaoHash(info);
-		RemoverDaLista(&t[i],no);
+		RemoverDaLista(&t[i], no);
 		printf("Nome removido: %s\n", info);
 	}else{
-		printf("Nome n�o encontrado\n");
+		printf("Nome não encontrado\n");
 	}
 	
 }
 
-void imprimirIndice (Lista t[], int i){
-	if(i>=0 && i<TAM){
+void imprimirEOrdenarIndice(Lista t[], int i){
+	if(i >= 0 && i < TAM){
 		printf("\tIndice %d: ", i);
 		Quicksort(&t[i], t[i].head, t[i].tail);
 		ImprimeLista(&t[i]);
 		printf("\n");
 	}else{
-		printf("N�o foi possivel encontrar esse indice\n");
+		printf("Não foi possivel encontrar esse indice\n");
 	}
 }
 
